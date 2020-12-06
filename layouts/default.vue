@@ -73,6 +73,7 @@
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-text-field
+        v-model="searchQuery"
         class="search-input"
         prepend-inner-icon="mdi-magnify"
         placeholder="Search"
@@ -142,6 +143,14 @@ export default Vue.extend({
           };
         })
     }),
+    searchQuery: {
+      get(): string {
+        return this.$store.state.search.query;
+      },
+      set(value: string): void {
+        this.setSearchQuery({ query: value });
+      }
+    },
     items(): LayoutButton[] {
       return [
         {
@@ -150,6 +159,14 @@ export default Vue.extend({
           to: '/'
         }
       ];
+    }
+  },
+  watch: {
+    searchQuery(newQuery: string, oldQuery: string): void {
+      // If neither the old nor the new query are empty, we don't want to move.
+      if (newQuery !== '' && oldQuery === '') {
+        this.$router.push({ name: 'search' });
+      }
     }
   },
   beforeMount() {
@@ -181,8 +198,9 @@ export default Vue.extend({
   methods: {
     ...mapActions('userViews', ['refreshUserViews']),
     ...mapActions('displayPreferences', ['callAllCallbacks']),
+    ...mapActions('search', ['setSearchQuery']),
     handleKeepAlive(): void {
-      this.$store.subscribe((mutation, state) => {
+      this.$store.subscribe((mutation, state: AppState) => {
         if (
           mutation.type === 'SOCKET_ONMESSAGE' &&
           state.socket.message.MessageType === 'ForceKeepAlive'
