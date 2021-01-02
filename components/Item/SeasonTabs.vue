@@ -9,7 +9,7 @@
       <v-tab-item v-for="season in seasons" :key="season.Id">
         <v-list two-line color="transparent">
           <v-list-item
-            v-for="episode in seasonEpisodes[currentTab]"
+            v-for="episode in seasonEpisodes[season.Id]"
             :key="episode.Id"
             nuxt
             :to="`/item/${episode.Id}`"
@@ -38,6 +38,7 @@
 import { BaseItemDto } from '@jellyfin/client-axios';
 import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
+import { TvShowItem } from '~/store/tvShows';
 
 export default Vue.extend({
   props: {
@@ -75,7 +76,7 @@ export default Vue.extend({
         itemId: this.item.Id
       });
     },
-    seasonEpisodes(): BaseItemDto[][] {
+    seasonEpisodes(): TvShowItem['seasonEpisodes'] {
       return this.getSeasonEpisodes({
         itemId: this.item.Id
       });
