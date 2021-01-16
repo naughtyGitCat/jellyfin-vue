@@ -107,7 +107,7 @@
 import { BaseItemDto } from '@jellyfin/client-axios';
 import { stringify } from 'qs';
 import Vue from 'vue';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, MutationPayload } from 'vuex';
 import { AppState } from '~/store';
 import { getLibraryIcon } from '~/utils/items';
 
@@ -200,7 +200,7 @@ export default Vue.extend({
     ...mapActions('displayPreferences', ['callAllCallbacks']),
     ...mapActions('search', ['setSearchQuery']),
     handleKeepAlive(): void {
-      this.$store.subscribe((mutation, state: AppState) => {
+      this.$store.subscribe((mutation: MutationPayload, state: AppState) => {
         if (
           mutation.type === 'SOCKET_ONMESSAGE' &&
           state.socket.message.MessageType === 'ForceKeepAlive'
