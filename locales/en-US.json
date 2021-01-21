@@ -1,6 +1,7 @@
 {
   "3DFormat": "3D format",
   "NoMediaSourcesAvailable": "No media sources available",
+  "about": "About",
   "actor": "Actor",
   "actors": "Actors",
   "addNewPerson": "Add a new person",
@@ -81,6 +82,9 @@
   },
   "images": "Images",
   "incorrectUsernameOrPassword": "Incorrect username or password",
+  "item": {
+    "trackTitle": "Title"
+  },
   "itemNotFound": "Item not found",
   "jellyfinLogo": "Jellyfin logo",
   "latestLibrary": "Latest {libraryName}",
@@ -316,8 +320,7 @@
   "upNextName": "Up next: {upNextItemName}",
   "username": "Username",
   "validation": {
-    "bothPasswordsSame": "Both passwords must be the same",
-    "mustBeUrl": "This field must be a valid URL",    
+    "bothPasswordsSame": "Both passwords must be the save",
     "mustBeUrl": "This field must be a valid URL",
     "required": "This field is required"
   },
