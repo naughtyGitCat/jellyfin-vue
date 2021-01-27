@@ -23,6 +23,9 @@
         :key="`bottomMenuItems-${index}`"
         @click="item.action"
       >
+        <v-list-item-icon>
+          <v-icon small>{{ item.icon }}</v-icon>
+        </v-list-item-icon>
         <v-list-item-title>{{ item.title }}</v-list-item-title>
       </v-list-item>
     </v-list>
@@ -35,6 +38,7 @@ import { mapActions } from 'vuex';
 
 interface MenuItem {
   title: string;
+  icon: string;
   action: () => void;
 }
 
@@ -51,6 +55,7 @@ export default Vue.extend({
       if (this.$auth.$state.user?.Policy?.IsAdministrator) {
         menuItems.push({
           title: this.$t('metadataEditor'),
+          icon: 'mdi-pencil',
           action: (): void => {
             this.$router.push('/metadata');
           }
@@ -59,6 +64,7 @@ export default Vue.extend({
 
       menuItems.push({
         title: this.$t('settings.settings'),
+        icon: 'mdi-cog',
         action: (): void => {
           this.$router.push('/settings');
         }
@@ -66,6 +72,7 @@ export default Vue.extend({
 
       menuItems.push({
         title: this.$t('logout'),
+        icon: 'mdi-logout',
         action: (): void => {
           this.logoutUser();
         }
@@ -95,5 +102,9 @@ export default Vue.extend({
 
 .no-overflow {
   max-width: 100%;
+}
+
+.user-select-none {
+  user-select: none;
 }
 </style>
