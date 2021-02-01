@@ -81,6 +81,12 @@
   },
   "images": "Images",
   "incorrectUsernameOrPassword": "Incorrect username or password",
+  "items": {
+    "artists": {
+      "general": "General",
+      "information": "Information"
+    }
+  },
   "itemNotFound": "Item not found",
   "jellyfinLogo": "Jellyfin logo",
   "latestLibrary": "Latest {libraryName}",
@@ -318,7 +324,6 @@
   "validation": {
     "bothPasswordsSame": "Both passwords must be the same",
     "mustBeUrl": "This field must be a valid URL",    
-    "mustBeUrl": "This field must be a valid URL",
     "required": "This field is required"
   },
   "version": "Version",

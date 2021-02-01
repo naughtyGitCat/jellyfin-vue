@@ -28,49 +28,52 @@
             </v-tabs>
             <v-tabs-items v-model="activeTab" class="transparent">
               <v-tab-item :key="0">
-                <v-row>
-                  <v-col cols="12" class="mx-3">
-                    <h2 class="text-h6">
-                      <span>{{ $t('albums') }}</span>
-                    </h2>
-                    <v-row
-                      v-for="appearance in appearances"
-                      :key="appearance.Id"
-                    >
-                      <v-col cols="12">
-                        <div class="d-flex flex-column">
-                          <v-row>
-                            <v-col cols="1">
-                              <card :item="appearance" no-text no-margin />
-                            </v-col>
-                            <v-col>
-                              <div
-                                class="text-subtitle-1 text--secondary font-weight-medium text-capitalize"
-                              >
-                                {{ appearance.ProductionYear }}
-                              </div>
-                              <nuxt-link
-                                class="link"
-                                tag="h2"
-                                :to="`/item/${appearance.Id}/`"
-                              >
-                                {{ appearance.Name }}
-                              </nuxt-link>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col>
-                              <track-list
-                                v-if="appearance.Type === 'MusicAlbum'"
-                                :item="appearance"
-                              ></track-list>
-                            </v-col>
-                          </v-row>
-                        </div>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                </v-row>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" class="mx-3">
+                      <h2 class="text-h6">
+                        <span>{{ $t('albums') }}</span>
+                      </h2>
+                      <v-row
+                        v-for="appearance in appearances"
+                        :key="appearance.Id"
+                        class="mt-2 mb-2"
+                      >
+                        <v-col cols="12">
+                          <div class="d-flex flex-column">
+                            <v-row>
+                              <v-col lg="2" sm="4" md="3">
+                                <card :item="appearance" no-text />
+                              </v-col>
+                              <v-col class="pa-5">
+                                <div
+                                  class="text-subtitle-1 text--secondary font-weight-medium text-capitalize"
+                                >
+                                  {{ appearance.ProductionYear }}
+                                </div>
+                                <nuxt-link
+                                  class="link"
+                                  tag="h2"
+                                  :to="`/item/${appearance.Id}/`"
+                                >
+                                  {{ appearance.Name }}
+                                </nuxt-link>
+                              </v-col>
+                            </v-row>
+                            <v-row>
+                              <v-col>
+                                <track-list
+                                  v-if="appearance.Type === 'MusicAlbum'"
+                                  :item="appearance"
+                                ></track-list>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </v-col>
+                  </v-row>
+                </v-container>
               </v-tab-item>
               <v-tab-item :key="1">
                 <v-container>
@@ -137,7 +140,10 @@ export default Vue.extend({
   data() {
     return {
       activeTab: 0,
-      tabs: ['Overview', 'About'],
+      tabs: [
+        this.$t('items.artists.general'),
+        this.$t('items.artists.information')
+      ],
       item: {} as BaseItemDto,
       appearances: [] as BaseItemDto[]
     };
